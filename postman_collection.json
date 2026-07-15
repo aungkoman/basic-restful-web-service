@@ -1,0 +1,102 @@
+{
+    "info": {
+        "name": "Hono Expense Tracker",
+        "description": "CRUD endpoints for the D1 + Hono API.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "1. Create Expense",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"description\": \"Office Supplies\",\n  \"amount\": 45.50,\n  \"date\": \"2026-07-15\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/expenses",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "expenses"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "2. Get All Expenses",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/expenses",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "expenses"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "3. Update Expense",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"amount\": 50.00\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/expenses/1",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "expenses",
+                        "1"
+                    ]
+                },
+                "description": "Tests partial update by only sending the 'amount'. Change the '1' in the URL to an existing database ID."
+            }
+        },
+        {
+            "name": "4. Delete Expense",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/expenses/1",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "expenses",
+                        "1"
+                    ]
+                },
+                "description": "Change the '1' in the URL to the ID you want to delete."
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8787",
+            "type": "string"
+        }
+    ]
+}

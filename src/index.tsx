@@ -8,6 +8,11 @@ type Bindings = {
 
 const app = new Hono<{ Bindings: Bindings }>()
 
+// 0. GET : sample 
+app.get('/', async (c) => {
+  return c.json({ message: 'Welcome to the Expense Tracker API!' })
+})
+
 // 1. POST: Add a new expense
 app.post('/expenses', async (c) => {
   // Parse the JSON payload
@@ -41,6 +46,27 @@ app.get('/expenses', async (c) => {
 
   return c.json(results)
 })
+
+// 3. GET: Expense detail
+app.get('/expenses/:id', async (c) => {
+  const id = c.req.param('id')
+
+  // Execute the query and get the first matching row
+  const expense = await c.env.DB.prepare(
+    'SELECT * FROM expenses WHERE id = ?'
+  )
+    .bind(id)
+    .first()
+
+  // .first() returns the object if found, or null if it doesn't exist
+  if (expense) {
+    return c.json(expense)
+  }
+
+  // Handle the null case
+  return c.json({ error: 'Expense not found' }, 404)
+})
+
 
 // 3. PUT: Update an existing expense
 app.put('/expenses/:id', async (c) => {
