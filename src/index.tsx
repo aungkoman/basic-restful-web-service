@@ -1,7 +1,13 @@
 import { Hono } from 'hono'
 import { renderer } from './renderer'
 
-const app = new Hono()
+// Define the D1 binding matching your wrangler.toml
+type Bindings = {
+  DB: D1Database
+}
+
+const app = new Hono<{ Bindings: Bindings }>()
+
 
 app.use(renderer)
 

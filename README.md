@@ -22,6 +22,9 @@ const app = new Hono<{ Bindings: CloudflareBindings }>()
 
 
 ```bash
+
+npm install -D @cloudflare/workers-types
+
 git remote add origin https://github.com/aungkoman/basic-restful-web-service.git
 
 
