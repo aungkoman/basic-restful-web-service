@@ -28,3 +28,20 @@ git remote add origin https://github.com/aungkoman/basic-restful-web-service.git
 ## pug secret
 npx wrangler secret put MY_API_KEY
 ```
+
+
+## Database Seeder
+
+```bash
+
+## Create Table
+npx wrangler d1 execute my-restful-web-service-db --local --command="CREATE TABLE expenses (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT, amount REAL, date TEXT);"
+npx wrangler d1 execute my-restful-web-service-db --remote --command="CREATE TABLE expenses (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT, amount REAL, date TEXT);"
+
+## Insert Data
+npx wrangler d1 execute my-restful-web-service-db --local --command="INSERT INTO expenses (description, amount, date) VALUES ('Groceries', 54.20, '2026-07-13'), ('Internet Bill', 80.00, '2026-07-14'), ('Coffee', 4.50, '2026-07-15');"
+npx wrangler d1 execute my-restful-web-service-db --remote --command="INSERT INTO expenses (description, amount, date) VALUES ('Groceries', 54.20, '2026-07-13'), ('Internet Bill', 80.00, '2026-07-14'), ('Coffee', 4.50, '2026-07-15');"
+
+## Select Data
+npx wrangler d1 execute my-restful-web-service-db --local --command="SELECT * FROM expenses;"
+```
