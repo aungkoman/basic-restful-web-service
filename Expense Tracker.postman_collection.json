@@ -1,0 +1,647 @@
+{
+  "info": {
+    "_postman_id": "62059c61-4f04-4087-9db0-bce815a99b93",
+    "name": "Expense Tracker",
+    "description": "CRUD endpoints for the D1 + Hono API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54582154",
+    "_collection_link": "https://go.postman.co/collection/54582154-62059c61-4f04-4087-9db0-bce815a99b93?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "0. Initialize",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// development\r",
+              "pm.collectionVariables.set(\"base_url\", \"http://localhost:5173\");\r",
+              "\r",
+              "// production\r",
+              "// pm.collectionVariables.set(\"base_url\", \"https://api.mmqrmenu.com\");\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}",
+          "host": [
+            "{{base_url}}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - Success",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}",
+              "host": [
+                "{{base_url}}"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "content-length",
+              "value": "49"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 15 Jul 2026 05:27:45 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Welcome to the Expense Tracker API!\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "1. Create Expense",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"Office Supplies\",\n  \"amount\": 45.50,\n  \"date\": \"2026-07-15\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/expenses",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "expenses"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "201 - Created",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Office Supplies\",\n  \"amount\": 45.50,\n  \"date\": \"2026-07-15\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "expenses"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "content-length",
+              "value": "41"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 15 Jul 2026 05:28:24 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Expense logged successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "2. Get All Expenses",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/expenses",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "expenses"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - Success",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/expenses",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "expenses"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "content-length",
+              "value": "281"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 15 Jul 2026 05:28:45 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"id\": 3,\n        \"description\": \"Coffee\",\n        \"amount\": 4.5,\n        \"date\": \"2026-07-15\"\n    },\n    {\n        \"id\": 4,\n        \"description\": \"Office Supplies\",\n        \"amount\": 45.5,\n        \"date\": \"2026-07-15\"\n    },\n    {\n        \"id\": 2,\n        \"description\": \"Internet Bill\",\n        \"amount\": 80,\n        \"date\": \"2026-07-14\"\n    },\n    {\n        \"id\": 1,\n        \"description\": \"Groceries\",\n        \"amount\": 54.2,\n        \"date\": \"2026-07-13\"\n    }\n]"
+        }
+      ]
+    },
+    {
+      "name": "2. Get Expense Detail",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/expenses/:id",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "expenses",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 - Success",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/expenses/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "expenses",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "",
+          "header": [
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "content-length",
+              "value": "70"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 15 Jul 2026 05:31:44 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [
+            {
+              "expires": "Invalid Date",
+              "domain": "",
+              "path": ""
+            }
+          ],
+          "body": "{\n    \"id\": 2,\n    \"description\": \"Internet Bill\",\n    \"amount\": 80,\n    \"date\": \"2026-07-14\"\n}"
+        },
+        {
+          "name": "404 - Not Found",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/expenses/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "expenses",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "",
+          "header": [
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "content-length",
+              "value": "29"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 15 Jul 2026 05:32:35 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [
+            {
+              "expires": "Invalid Date",
+              "domain": "",
+              "path": ""
+            }
+          ],
+          "body": "{\n    \"error\": \"Expense not found\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "3. Update Expense",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 50.00\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/expenses/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "expenses",
+            "1"
+          ]
+        },
+        "description": "Tests partial update by only sending the 'amount'. Change the '1' in the URL to an existing database ID."
+      },
+      "response": [
+        {
+          "name": "200 - Updated",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 50.00\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "expenses",
+                "1"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "content-length",
+              "value": "42"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 15 Jul 2026 05:29:02 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Expense updated successfully\"\n}"
+        },
+        {
+          "name": "404 - Not Found",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 50.00\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "expenses",
+                "1"
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "content-length",
+              "value": "46"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 15 Jul 2026 05:33:49 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Expense not found or update failed\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "4. Delete Expense",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/expenses/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "expenses",
+            "1"
+          ]
+        },
+        "description": "Change the '1' in the URL to the ID you want to delete."
+      },
+      "response": [
+        {
+          "name": "200 - Deleted",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/expenses/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "expenses",
+                "1"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "content-length",
+              "value": "42"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 15 Jul 2026 05:29:17 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Expense deleted successfully\"\n}"
+        },
+        {
+          "name": "404 - Not Found",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/expenses/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "expenses",
+                "1"
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "content-length",
+              "value": "29"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 15 Jul 2026 05:29:28 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Expense not found\"\n}"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8787"
+    }
+  ]
+}
