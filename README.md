@@ -28,8 +28,19 @@ npm install -D @cloudflare/workers-types
 git remote add origin https://github.com/aungkoman/basic-restful-web-service.git
 
 
+## production API Endpoint 
+https://basic-restful-web-service.aungkoman.workers.dev
+https://api.software100.com.mm
+
+
+
 ## pug secret
 npx wrangler secret put MY_API_KEY
+
+
+## Deploy
+npx wrangler deploy
+
 ```
 
 

@@ -16,10 +16,10 @@
           "script": {
             "exec": [
               "// development\r",
-              "pm.collectionVariables.set(\"base_url\", \"http://localhost:5173\");\r",
+              "// pm.collectionVariables.set(\"base_url\", \"http://localhost:5173\");\r",
               "\r",
               "// production\r",
-              "// pm.collectionVariables.set(\"base_url\", \"https://api.mmqrmenu.com\");\r",
+              "pm.collectionVariables.set(\"base_url\", \"https://api.software100.com.mm\");\r",
               ""
             ],
             "type": "text/javascript",
